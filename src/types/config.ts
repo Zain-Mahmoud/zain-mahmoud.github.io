@@ -19,6 +19,10 @@ interface SiteConfig {
   dir?: "ltr" | "rtl" | "auto";
   /** Google Search Console verification meta tag value */
   googleVerification?: string;
+  /** Terminal-style prompt used in branding, e.g. ">" */
+  prompt?: string;
+  /** Public URL of the resume PDF, e.g. "/Zainelden_Resume.pdf" */
+  resumeUrl?: string;
 }
 
 interface PostsConfig {
@@ -61,6 +65,48 @@ interface FeaturesConfig {
   search?: "pagefind" | false;
 }
 
+interface HomeButton {
+  /** Button label */
+  label: string;
+  /** Relative or absolute href */
+  href: string;
+  /** Open in a new tab (defaults to same tab) */
+  target?: "_blank" | "_self";
+}
+
+interface HomeConfig {
+  /** Small terminal-style line above the heading, e.g. "~/whoami" */
+  eyebrow?: string;
+  /** Hero heading */
+  heading?: string;
+  /** Short availability/status line rendered with a live indicator */
+  statusLine?: string;
+  /** Hero intro paragraph */
+  intro?: string;
+  /** Buttons shown next to the intro (resume, projects, etc.) */
+  buttons?: HomeButton[];
+}
+
+interface NavItem {
+  /** Nav label shown in the header */
+  label: string;
+  /** Relative path, e.g. "projects" (no leading slash) */
+  href: string;
+}
+
+interface NavConfig {
+  /**
+   * Header navigation items. When empty, defaults are used:
+   * Posts, Tags, Projects, CTF, About.
+   */
+  items?: NavItem[];
+}
+
+interface FooterConfig {
+  /** One-line personal note shown in the footer, e.g. "Hand-built with Astro" */
+  note?: string;
+}
+
 interface SocialLink {
   /**
    * Must match an SVG filename in src/assets/icons/socials/.
@@ -96,6 +142,12 @@ interface AstroPaperConfig {
   site: SiteConfig;
   posts?: PostsConfig;
   features?: FeaturesConfig;
+  /** Home page hero content */
+  home?: HomeConfig;
+  /** Header navigation */
+  nav?: NavConfig;
+  /** Footer content */
+  footer?: FooterConfig;
   /** Social profile links shown in header/footer */
   socials?: SocialLink[];
   /** Share links shown on post detail pages */
@@ -115,12 +167,32 @@ type ResolvedSiteConfig = Required<
     | "ogImage"
   >
 > &
-  Pick<SiteConfig, "profile" | "googleVerification">;
+  Pick<SiteConfig, "profile" | "googleVerification"> & {
+    prompt: string;
+    resumeUrl: string;
+  };
+
+type ResolvedHomeConfig = Required<
+  Pick<HomeConfig, "eyebrow" | "heading" | "statusLine" | "intro">
+> & {
+  buttons: HomeButton[];
+};
+
+type ResolvedNavConfig = {
+  items: NavItem[];
+};
+
+type ResolvedFooterConfig = {
+  note: string;
+};
 
 export interface ResolvedAstroPaperConfig {
   site: ResolvedSiteConfig;
   posts: Required<PostsConfig>;
   features: Required<FeaturesConfig>;
+  home: ResolvedHomeConfig;
+  nav: ResolvedNavConfig;
+  footer: ResolvedFooterConfig;
   socials: SocialLink[];
   shareLinks: ShareLink[];
 }

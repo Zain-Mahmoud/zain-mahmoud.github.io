@@ -7,28 +7,31 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --color-surface: var(--surface);
+  --font-app: var(--font-primary);
 }
 
-/* Light theme values */
+/* Dark is the primary identity — terminal green on near-black. */
 :root,
-[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+[data-theme="dark"] {
+  --background: #0b0f14;
+  --foreground: #c9d4cf;
+  --accent: #37f0a1;
+  --accent-foreground: #04150d;
+  --muted: #141b24;
+  --muted-foreground: #7a8790;
+  --border: #1d2831;
+  --surface: #0f161d;
 }
 
-/* Dark theme values */
-[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
+/* Light mode stays readable while keeping the same accent family. */
+[data-theme="light"] {
+  --background: #f7f7f4;
+  --foreground: #1f2522;
+  --accent: #0e7a4f;
   --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --muted: #e8ebe5;
+  --muted-foreground: #65706b;
+  --border: #dde1db;
+  --surface: #ffffff;
 }

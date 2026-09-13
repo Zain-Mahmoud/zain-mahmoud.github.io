@@ -8,6 +8,8 @@ export default {
     about: "About",
     archives: "Archives",
     search: "Search",
+    projects: "Projects",
+    ctf: "CTF",
   },
   post: {
     publishedAt: "Published at",
@@ -28,7 +30,7 @@ export default {
     page: "Page",
   },
   home: {
-    socialLinks: "Social Links",
+    socialLinks: "find me online",
     featured: "Featured",
     recentPosts: "Recent Posts",
     allPosts: "All Posts",

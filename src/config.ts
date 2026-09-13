@@ -17,6 +17,8 @@ const config: ResolvedAstroPaperConfig = {
     lang: userConfig.site.lang ?? "en",
     timezone: userConfig.site.timezone ?? "UTC",
     dir: userConfig.site.dir ?? "ltr",
+    prompt: userConfig.site.prompt ?? ">",
+    resumeUrl: userConfig.site.resumeUrl ?? "/Zainelden_Resume.pdf",
     googleVerification:
       userConfig.site.googleVerification || PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
@@ -33,6 +35,19 @@ const config: ResolvedAstroPaperConfig = {
     showBackButton: userConfig.features?.showBackButton ?? true,
     editPost: userConfig.features?.editPost ?? { enabled: false },
     search: userConfig.features?.search ?? "pagefind",
+  },
+  home: {
+    eyebrow: userConfig.home?.eyebrow ?? "",
+    heading: userConfig.home?.heading ?? userConfig.site.title,
+    statusLine: userConfig.home?.statusLine ?? "",
+    intro: userConfig.home?.intro ?? "",
+    buttons: userConfig.home?.buttons ?? [],
+  },
+  nav: {
+    items: userConfig.nav?.items ?? [],
+  },
+  footer: {
+    note: userConfig.footer?.note ?? "",
   },
   socials: userConfig.socials ?? [],
   shareLinks: userConfig.shareLinks ?? [],
